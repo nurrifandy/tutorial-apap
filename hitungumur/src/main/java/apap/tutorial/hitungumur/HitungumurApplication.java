@@ -9,5 +9,4 @@ public class HitungumurApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(HitungumurApplication.class, args);
 	}
-
 }
