@@ -38,4 +38,5 @@ Gradle
 dikemudian hari, dan tambahkan tulisan yang membuat Anda mengerti)
 - [ ] Kenapa saya harus belajar APAP?
 - [x] Kenapa?
-Karena …
+Dikarenakan agar dapat mengerti dan memahami bagaimana pembuatan aplikasi bersekala besar. Karena pada dasarnya perancangan aplikasi yang berskala besar dan berskala perorangan sangatlah berbeda.
+Apalagi dengan aplikasi yang bersifat enterprise.
