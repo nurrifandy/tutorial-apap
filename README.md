@@ -22,4 +22,4 @@ terdapat parameter yang tidak terpenuhi sehingga menyebabkan error bad request
 4. Resto baru = http://localhost:8080/restoran/add?idRestoran=2&nama=RestoMakmur&alamat=Kutek%2
 0Fasilkom&nomorTelepon=12345
 
-![screenshot]{apap-tutorial-2.PNG}
+![screenshot]{apap-tutorial-2.png}
