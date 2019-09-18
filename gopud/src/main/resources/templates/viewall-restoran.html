@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeLeaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>View All Restoran</title>
+</head>
+<body>
+    
+    <div th:if="${resto == null}">
+        <h1>Tidak ada restoran yang terdaftar!!!</h1>    
+    </div>
+    <div th:unless="${resto == null }">
+        <h2>Daftar seluruh Restoran</h2>
+        <div th:each="resto : ${restoList}">
+            <h3 th:text ="'ID Restoran: ' + ${resto.getIdRestoran()}"></h3>
+            <h3 th:text ="'Nama Restoran: ' + ${resto.getNama()}"></h3>
+            <h3 th:text ="'Alamat Restoran: ' + ${resto.getAlamat()}"></h3>
+            <h3 th:text ="'Nomor Telp. Restoran: ' + ${resto.getNomorTelepon()}"></h3>
+        </div>
+    </div>
+
+</body>
+</html>
