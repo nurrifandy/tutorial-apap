@@ -4,6 +4,50 @@
 
 * **nur.rifandy** - *1706984695* - *APAP-C*
 
+## Tutorial 3
+
+1. Pada class MenuDb, terdapat method findByRestoranIdRestoran , apakah kegunaan dari
+method tersebut?
+method tersebut digunakan untuk mengambil semua menu yang berelasi dengan idRestoran. Atau dalam kata lain untuk mengambil mendapatkan list menu dari sebuah restoran berdasarkan id restoran tersebut. 
+
+
+2. Pada class RestoranController, jelaskan perbedaan method addRestoranFormPage dan
+addRestoranSubmit?
+addRestoranFormPage merupakan method yang mengembalikan halaman yang berisi form.
+sedangkan, addRestoranSubmit merupakan method yang berfunsi debagai action setelah seseorang mengisi form dan mensubmit datanya 
+
+
+3. Jelaskan apa kegunaan dari JPA Repository?
+JPA Repository merupakan sebuah merupakan sebuah standar spesifikasi tentang bagaimana cara mengakses database di Java. JPA juga dirakit dengan funsi CRUD dasar untuk mempermudah dalam mengakses data dan membangun aplikasi.
+
+4. Sebutkan dan jelaskan di bagian kode mana sebuah relasi antara RestoranModel dan
+MenuModel dibuat?
+File : MenuModel.java
+    @ManyToOne(fetch = FetchType.EAGER,optional=false)
+    @JoinColumn(name="restoranId", referencedColumnName = "idRestoran", nullable=false)
+    @OnDelete(action= OnDeleteAction.CASCADE)
+    @JsonIgnore
+    private RestoranModel restoran;
+
+pada code di atas, dapat kita ketahui ketika sebuah entity pada model MenuModel maka relasi ManyToOne antara MenuModel ke RelationalModel akan terbentuk.
+
+File : RestoranModel.java
+    @OneToMany(mappedBy="restoran", fetch = FetchType.LAZY, cascade= CascadeType.ALL)
+    private List<MenuModel> listMenu;
+
+Begitupun pada RestoranModel akan terbentuk relational dengan MenuModel berdasarkan kode di atas.
+
+5. Jelaskan kegunaan FetchType.LAZY , CascadeType.ALL , dan FetchType.EAGER
+FetchType.LAZY = pengambilan data bergantung pada kebutuhan. Hanya ketika dilakukan pemanggilan getter pada suatus attribut.
+
+CascadeType.ALL = tipe ini memungkinkan apabila terjadi perubahan terhadap sebuah entity, maka entity yang berelasi dengannya akan ikut mengalama perubahan.
+
+FetchType.EAGER = pengambilan data langsung bersamaan dengan entitas parentsnya.
+
+
+
+## Tutorial 2
+
 1. There was an unexpected error (type=Internal Server Error, status=500).
 Error resolving template [add-restoran], template might not exist or might not be accessible by any of the configured Template Resolvers
 

@@ -1,35 +1,98 @@
 package apap.tutorial.gopud.model;
 
-public class RestoranModel{
-    private String idRestoran;
-    private String nama;
-    private String alamat;
-    private String nomorTelepon;
+import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.FetchType;
+import javax.persistence.CascadeType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import java.util.List;
 
-    public RestoranModel(String idRestoran, String nama, String alamat, String nomorTelepon){
+import apap.tutorial.gopud.model.MenuModel;
+
+@Entity
+@Table(name="restoran")
+public class RestoranModel implements Serializable{
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long idRestoran;
+
+    @NotNull
+    @Size(max=20)
+    @Column(name="nama", nullable = false)
+    private String nama;
+
+    @NotNull
+    @Size(max=30)
+    @Column(name="alamat", nullable = false)
+    private String alamat;
+
+    @NotNull
+    @Column(name = "rating",nullable=false)
+    private Integer rating = 0;
+
+    @NotNull
+    @Column(name="nomorTelepon", nullable=false)
+    private Integer nomorTelepon;
+
+    @OneToMany(mappedBy="restoran", fetch = FetchType.LAZY, cascade= CascadeType.ALL)
+    private List<MenuModel> listMenu;
+
+/**    
+    public RestoranModel(long idRestoran, String nama, String alamat, Integer nomorTelepon){
         this.idRestoran = idRestoran;
         this.nama = nama;
         this.alamat= alamat;
         this.nomorTelepon = nomorTelepon;
     }
-
-    public String getIdRestoran(){
+ */
+    public Long getIdRestoran(){
         return this.idRestoran;
+    }
+
+    public void setIdRestoran(Long idRestoran){
+        this.idRestoran = idRestoran;
     }
 
     public String getNama(){
         return this.nama;
     }
 
+    public void setNama(String newName){
+        this.nama = newName;
+    }
+
     public String getAlamat(){
         return this.alamat;
     }
 
-    public String getNomorTelepon(){
+    public void setAlamat(String newAlamat){
+        this.alamat = newAlamat;
+    }
+
+    public Integer getRating(){
+        return this.rating;
+    }
+
+    public void setRating(Integer rating){
+        this.rating = rating;
+    }
+
+    public Integer getNomorTelepon(){
         return this.nomorTelepon;
     }
 
-    public void setNomorTelepon(String newNomorTelepon){
+    public void setNomorTelepon(Integer newNomorTelepon){
         this.nomorTelepon = newNomorTelepon;
+    }
+
+    public List<MenuModel> getListMenu(){
+        return this.listMenu;
     }
 }
