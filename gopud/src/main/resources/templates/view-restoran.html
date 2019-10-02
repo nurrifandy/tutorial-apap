@@ -28,7 +28,8 @@
 
         <h2>Daftar Menu :</h2>
         <form th:action="@{/menu/delete/}" th:object="${resto}" method="POST">
-        <table style="text-align: center">
+        <div class="d-flex justify-content-center">
+            <table style="text-align: center" >
         <thead>
             <tr>
                 <th>No</th>
@@ -63,6 +64,7 @@
                     
         </tbody>
         </table>
+        </div>
         <button type="submit" class="btn btn-sm btn-danger">Hapus yang dipilih</button>
         </form>
         <!--

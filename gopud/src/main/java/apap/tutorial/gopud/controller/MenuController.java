@@ -53,7 +53,7 @@ public class MenuController{
     }
 
     @PostMapping(value = "/menu/add/{idRestoran}", params = {"addRow"})
-    public String addRow(@ModelAttribute RestoranModel restoran, BindingResult bindingResult, Model model){
+    public String addRow(@ModelAttribute RestoranModel restoran, Model model){
         if(restoran.getListMenu() == null){
             restoran.setListMenu(new ArrayList<MenuModel>());
         }
@@ -63,7 +63,7 @@ public class MenuController{
     }
 
     @PostMapping(value = "/menu/add/{idRestoran}", params = {"removeRow"})
-    public String removeRow(@ModelAttribute RestoranModel restoran, final BindingResult bindingResult, final HttpServletRequest request, Model model){
+    public String removeRow(@ModelAttribute RestoranModel restoran, final HttpServletRequest request, Model model){
         final Integer rowId = Integer.valueOf(request.getParameter("removeRow"));
         restoran.getListMenu().remove(rowId.intValue());
         model.addAttribute("restoran", restoran);
