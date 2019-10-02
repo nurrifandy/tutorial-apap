@@ -16,6 +16,25 @@
                 <h3 th:text ="'Nama Restoran: ' + ${resto.getNama()}"></h3>
                 <h3 th:text ="'Alamat Restoran: ' + ${resto.getAlamat()}"></h3>
                 <h3 th:text ="'Nomor Telp. Restoran: ' + ${resto.getNomorTelepon()}"></h3>
+        
+        <td><a th:href="@{/restoran/change/}+${resto.getIdRestoran()}"> Change Data Restoran </a></td>
+        <br>
+        <td><a th:href="@{/restoran/delete/}+${resto.getIdRestoran()}"> Delete Data Restoran </a></td>
+        <br>
+
+        <h2>Daftar Menu :</h2>
+        <div th:each="menu : ${menuList}">
+            <h3 th:text="'Nama : ' + ${menu.getNama()}"></h3>
+            <h3 th:text="'Harga : ' + ${menu.getHarga()}"></h3>
+            <h3 th:text="'Deskripsi : ' + ${menu.getDeskripsi()}"></h3>
+            <h3 th:text="'Durasi Penyajian : ' + ${menu.getDurasiMasak()}"></h3>
+            <br>
+            <td><a th:href="@{/menu/change/} + ${resto.getIdRestoran()} + '/' + ${menu.getId()}">Change Data Menu</a></td>
+            <br>
+            <td><a th:href="@{/menu/delete/} + ${resto.getIdRestoran()} + '/' + ${menu.getId()}">Delete Data Menu</a></td>
+            <br>
+        </div>
+        <td><a th:href="@{/menu/add/} + ${resto.getIdRestoran()}">Add Menu</a></td>
         </div>
 </body>
 </html>
