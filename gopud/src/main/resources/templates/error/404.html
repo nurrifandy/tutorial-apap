@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>404 Not Found</title>
+    <head th:replace="fragments/fragment :: headerFragment (pageTitle='404 Not Found')"></head>
     <object th:include="fragments/fragment :: css" th:remove="tag"></object>
     <object th:include="fragments/fragment :: js" th:remove="tag"></object>
 </head>
-<body>
-    <nav th:replace="fragments/fragment :: navbar"></nav>
-    <div class="h2">Halaman yang anda cari tidak berhasil ditemukan.</div>
+<body class="text-center">
+    <nav th:replace="fragments/fragment :: navbar (brand='404 Error')"></nav>
+    <div class="h2 my-auto">Halaman yang anda cari tidak berhasil ditemukan.</div>
 </body>
 </html>

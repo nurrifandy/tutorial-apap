@@ -74,5 +74,31 @@ public class MenuController{
         
         return "delete-menu";
     }
-    
+
+    @RequestMapping(value = "add/row")
+    public String addRow(Model model){
+        MenuModel menu = new MenuModel();
+
+        model.addAttribute("menu", menu);
+
+        String addRow = "<tr>"
+        + "<td>"
+            + "<input type='text' name='nama'>"
+        + "</td>"
+        + "<td>"
+            + "<input type='text' name='deskripsi'>"
+        +"</td>"
+        + "<td>"
+            + "<input type='number' name='harga'>"
+        + "</td>"
+        + "<td>"
+            + "<input type='number' name='durasiMasak'>"
+        + "</td>"
+        + "<td>"
+            +"<input type='button' class='btn btn-danger' th:value='hapus'>"
+        + "</td>"
+    + "</tr>";
+        model.addAttribute("add", addRow);
+        return "form-add-menu";
+    }
 }
