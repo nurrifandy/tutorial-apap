@@ -21,12 +21,12 @@ tahapan penyelesaian :
 
 2. Jelaskan yang anda pelajari dari latihan nomor 3, dan jelaskan tahapan bagaimana anda
 menyelesaikan latihan nomor 3
-Pada latihan nomer 3, soal cukup susah di pecahkan. Namun dengan beberapa referensi dan documentasi dari thymeleaf sehingga pada akhirnya dapat diselesaikan. pada latihan 3 ini terdapat pembelajaran baru yang di dapat, Selain itu, dari latihan nomor 3 juga dapat belajar menggunakan penyimpanan data sementara sebelum semua data dikirimkan.
+Pada latihan nomer 3, soal cukup susah di pecahkan. Namun dengan beberapa referensi dan documentasi dari thymeleaf sehingga pada akhirnya dapat diselesaikan. pada latihan 3 ini terdapat pembelajaran baru yang di dapat adalah thymeleaf memungkin user untuk melakukan penambahan form atau duplicate form tanpa perlu menggunakan js. Selain itu, dari latihan nomor 3 juga dapat belajar menggunakan penyimpanan data sementara sebelum semua data dikirimkan.
 
 tahapan penyelesaian:
 - menyediakan sebuah array sebagai penyimpanan sementara untuk setiap data yang dimasukkan.
 - kemudian untk menampilkan row lebih dari 1 maka akan dilakukan iterasi sesuai pentambahan banyak object menunya.
-- untuk proses penghapusan row, maka akan di hapus berdasarkan indexnya
+- untuk proses penghapusan row, maka akan di hapus berdasarkan indexnya/idrow.
 - dan setelah data pada setiap field di isi, maka dapat dilakukan submit, yang akan memproses penambahan menu secara bersamaan.
 
 3. Jelaskan perbedaan th:include dan th:replace
@@ -36,6 +36,8 @@ sedangkan, th:replace akan menggantikan tag host dengan fragment.
 4. Jelaskan bagaimana penggunaan th:object beserta tujuannya
 penggunaan th:object diharuskan oleh thymeleaf ketika pengguna mengguna sebuah tag form. cara penggunaannya yaitu dengan di deklarasikan pada tag form, th:object-> dengan ekspresi variable (${nama varible}) yang menentukan nama attribut properti.
 tujuannya adalah untuk megatur atau menentukan sebuah object dimana data dari sebuah form akan dikirimkan.
+
+
 
 ## Tutorial 3
 
