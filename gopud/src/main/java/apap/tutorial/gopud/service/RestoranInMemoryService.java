@@ -1,7 +1,9 @@
+/** 
 package apap.tutorial.gopud.service;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 import apap.tutorial.gopud.model.RestoranModel;
@@ -29,14 +31,18 @@ public class RestoranInMemoryService implements RestoranService{
     } 
 
     @Override
-    public RestoranModel getRestoranByIdRestoran(String idRestoran){
+    public Optional<RestoranModel> getRestoranByIdRestoran(Long idRestoran){
         for (RestoranModel restoranModel : listRestoran){
-            if (restoranModel.getIdRestoran().equalsIgnoreCase(idRestoran)){
-                restoran = restoranModel;
-                break;
+            if (restoranModel.getIdRestoran() == idRestoran){
+                return Optional.of(restoranModel);
             }
         }
-        return restoran;
+        return Optional.of(restoran);
+    }
+
+    @Override
+    public RestoranModel changeRestoran(RestoranModel restoran){
+        return null;
     }
 
     @Override
@@ -44,3 +50,4 @@ public class RestoranInMemoryService implements RestoranService{
         listRestoran.remove(restoran);
     }
 }
+*/

@@ -8,10 +8,10 @@
 </head>
 <body>
     
-    <div th:if="${resto == null}">
+    <div th:if="${restoList == null}">
         <h1>Tidak ada restoran yang terdaftar!!!</h1>    
     </div>
-    <div th:unless="${resto == null }">
+    <div th:unless="${restoList == null }">
         <h2>Daftar seluruh Restoran</h2>
         <div th:each="resto : ${restoList}">
             <h3 th:text ="'ID Restoran: ' + ${resto.getIdRestoran()}"></h3>

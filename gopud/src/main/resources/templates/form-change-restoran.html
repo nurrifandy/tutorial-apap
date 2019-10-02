@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeLeaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Change Data Restoran</title>
+</head>
+<body>
+    <h2>Change Data Restoran</h2>
+    <form th:action="@{/restoran/change/{idRestoran}(idRestoran=${restoran.getIdRestoran()})}" th:object="${restoran}" method="POST">
+        <input type="hidden" th:field="${restoran.idRestoran}">
+        Nama Restoran : <br>
+        <input type="text" name="nama" th:value="${restoran.getNama()}">
+        <br>
+        Alamat : <br>
+        <input type="text" name="alamat" th:value="${restoran.getAlamat()}">
+        <br>
+        Nomor Telepon : <br>
+        <input type="number" name="nomorTelepon" th:value="${restoran.getNomorTelepon()}">
+        <br>
+
+        <br><br>
+        <button type="submit">Submit</button>
+
+    </form>
+</body>
+</html>
