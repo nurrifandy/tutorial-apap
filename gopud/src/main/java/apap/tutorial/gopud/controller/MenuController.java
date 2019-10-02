@@ -1,9 +1,14 @@
 package apap.tutorial.gopud.controller;
 
+import java.util.ArrayList;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,9 +31,42 @@ public class MenuController{
     @GetMapping(value="/menu/add/{idRestoran}")
     private String addProductFormPage(@PathVariable(value="idRestoran")Long idRestoran, Model model){
         MenuModel menu = new MenuModel();
+
         RestoranModel restoran = restoranService.getRestoranByIdRestoran(idRestoran).get();
-        menu.setRestoran(restoran);
+        ArrayList<MenuModel> listMenu = new ArrayList<MenuModel>();
+        listMenu.add(menu);
+        restoran.setListMenu(listMenu);
+
+        model.addAttribute("restoran", restoran);
         model.addAttribute("menu", menu);
+        return "form-add-menu";
+    }
+
+    @PostMapping(value = "/menu/add/{idRestoran}", params = {"save"})
+    public String addMenuSubmit(@ModelAttribute RestoranModel restoran, Model model){
+        RestoranModel curRestoran = restoranService.getRestoranByIdRestoran(restoran.getIdRestoran()).get();
+        for(MenuModel menu : restoran.getListMenu()){
+            menu.setRestoran(curRestoran);
+            menuService.addMenu(menu);
+        }
+        return "add-menu";
+    }
+
+    @PostMapping(value = "/menu/add/{idRestoran}", params = {"addRow"})
+    public String addRow(@ModelAttribute RestoranModel restoran, BindingResult bindingResult, Model model){
+        if(restoran.getListMenu() == null){
+            restoran.setListMenu(new ArrayList<MenuModel>());
+        }
+        restoran.getListMenu().add(new MenuModel());
+        model.addAttribute("restoran", restoran);
+        return "form-add-menu";
+    }
+
+    @PostMapping(value = "/menu/add/{idRestoran}", params = {"removeRow"})
+    public String removeRow(@ModelAttribute RestoranModel restoran, final BindingResult bindingResult, final HttpServletRequest request, Model model){
+        final Integer rowId = Integer.valueOf(request.getParameter("removeRow"));
+        restoran.getListMenu().remove(rowId.intValue());
+        model.addAttribute("restoran", restoran);
         return "form-add-menu";
     }
 
@@ -75,30 +113,5 @@ public class MenuController{
         return "delete-menu";
     }
 
-    @RequestMapping(value = "add/row")
-    public String addRow(Model model){
-        MenuModel menu = new MenuModel();
-
-        model.addAttribute("menu", menu);
-
-        String addRow = "<tr>"
-        + "<td>"
-            + "<input type='text' name='nama'>"
-        + "</td>"
-        + "<td>"
-            + "<input type='text' name='deskripsi'>"
-        +"</td>"
-        + "<td>"
-            + "<input type='number' name='harga'>"
-        + "</td>"
-        + "<td>"
-            + "<input type='number' name='durasiMasak'>"
-        + "</td>"
-        + "<td>"
-            +"<input type='button' class='btn btn-danger' th:value='hapus'>"
-        + "</td>"
-    + "</tr>";
-        model.addAttribute("add", addRow);
-        return "form-add-menu";
-    }
+   
 }

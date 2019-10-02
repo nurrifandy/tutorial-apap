@@ -4,6 +4,23 @@
 
 * **nur.rifandy** - *1706984695* - *APAP-C*
 
+“Success is no accident. It is hard work, perseverance, learning,
+studying, sacrifice and most of all, love of what you are doing or
+learning to do.”
+–Pelé, Brazilian football legend.
+
+##Tutorial 4
+
+1. Jelaskan yang anda pelajari dari melakukan latihan nomor 2, dan jelaskan tahapan bagaimana
+anda menyelesaikan latihan nomor 2
+
+2. Jelaskan yang anda pelajari dari latihan nomor 3, dan jelaskan tahapan bagaimana anda
+menyelesaikan latihan nomor 3
+
+3. Jelaskan perbedaan th:include dan th:replace
+
+4. Jelaskan bagaimana penggunaan th:object beserta tujuannya
+
 ## Tutorial 3
 
 1. Pada class MenuDb, terdapat method findByRestoranIdRestoran , apakah kegunaan dari

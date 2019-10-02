@@ -12,7 +12,8 @@
 <body class="text-center">
     <nav th:replace="fragments/fragment :: navbar  (brand='Add Menu')"></nav>
     <h3 class="p-4">Tambah Produk</h3>
-    <form th:action="@{/menu/add}" th:object="${menu}" method="POST">
+    <form th:action="@{'/menu/add/' + ${restoran.idRestoran}}" th:object="${restoran}" method="POST">
+        <input type="hidden" th:field="*{idRestoran}">
         <div class="d-flex justify-content-center" >
         <table>
             <thead>
@@ -22,33 +23,33 @@
                     <th>Harga</th>
                     <th>Durasi Masak (menit)</th>
                     <th>
-                        <a th:href="@{/add/row}"><input type="button" class="btn btn-primary" value="Add Row"></a>
+                        <button class="btn btn-primary" type="submit" name="addRow">Add Row</button>
                     </th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
+                <tr th:each="menu, rowStat : *{listMenu}">
                     <td>
-                        <input type="text" name="nama">
+                        <input type="text" th:field="*{listMenu[__${rowStat.index}__].nama}">
                     </td>
                     <td>
-                        <input type="text" name="deskripsi">
+                        <input type="text" th:field="*{listMenu[__${rowStat.index}__].deskripsi}">
                     </td>
                     <td>
-                        <input type="number" name="harga">
+                        <input type="number" th:field="*{listMenu[__${rowStat.index}__].harga}">
                     </td>
                     <td>
-                        <input type="number" name="durasiMasak">
+                        <input type="number" th:field="*{listMenu[__${rowStat.index}__].durasiMasak}">
                     </td>
                     <td>
-                        <input type="button" class="btn btn-danger" th:value="hapus">
+                        <button class="btn btn-danger" type="submit" name="removeRow" th:value="${rowStat.index}">Remove</button>
                     </td>
                 </tr>
                 <div></div>
             </tbody>
         </table>
     </div>
-        <button class="btn btn-primary" type="submit">Submit</button>
+        <button class="btn btn-primary" type="submit" name="save">Submit</button>
     </form>
 </body>
 </html>
