@@ -9,6 +9,18 @@
 <body>
     <h3>Tambah Produk</h3>
     <form th:action="@{/menu/add}" th:object="${menu}" method="POST">
+        <table>
+            <thead>
+                <tr>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
         <input type="hidden" th:field="*{restoran}">
         Nama : <br>
         <input type="text" name="nama">
@@ -22,7 +34,8 @@
         Durasi Masak (menit) : <br>
         <input type="number" name="durasiMasak">
         <br>
-        <button type="submit">Submit</button>
+        <button
+         type="submit">Submit</button>
     </form>
 </body>
 </html>

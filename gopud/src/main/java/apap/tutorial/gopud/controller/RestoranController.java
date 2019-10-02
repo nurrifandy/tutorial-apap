@@ -64,11 +64,15 @@ public class RestoranController{
         RestoranModel restoran = restoranService.getRestoranByIdRestoran(idRestoran).orElse(null);
 
         //umpan balik yang akan dikirimkan kepada view
-        model.addAttribute("resto", restoran);
+        List<MenuModel> menuList = null;
         if(restoran != null){
-            List<MenuModel> menuList = menuService.findAllMenuByIdRestoran(restoran.getIdRestoran());
-            model.addAttribute("menuList", menuList);
+            menuList = menuService.findAllMenuByIdRestoran(restoran.getIdRestoran());
         }
+
+        restoran.setListMenu(menuList);
+
+        model.addAttribute("resto", restoran);
+
     
         return "view-restoran";
     }
@@ -118,7 +122,16 @@ public class RestoranController{
 
         // return view template
         return "viewall-restoran";
+    }
 
+    @RequestMapping(value = "/error-400")
+    public String error(Model model){
+        return "error/404";
+    }
+
+    @RequestMapping(value = "/error-500")
+    public String errorHandling(Model model){
+        return "error/500";
     }
 //-------------------------------------------------------------------
 /**

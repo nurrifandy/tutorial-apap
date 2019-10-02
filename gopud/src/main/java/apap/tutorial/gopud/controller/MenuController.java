@@ -66,11 +66,12 @@ public class MenuController{
     }
 
     //Url untuk melakukan delete pada sebuah menu
-    @RequestMapping(value="menu/delete/{idRestoran}/{id}")
-    public String deleteMenu(@PathVariable Long idRestoran, @PathVariable Long id, Model model){
-        MenuModel menu = menuService.getMenuByIdMenu(idRestoran,id).orElse(null);
-        menuService.deleteMenu(menu);
-        model.addAttribute("menu", menu);
+    @RequestMapping(value="menu/delete/")
+    public String deleteMenu(@ModelAttribute RestoranModel restoran, Model model){
+        for (MenuModel menu : restoran.getListMenu()){
+            menuService.deleteMenu(menu);
+        }        
+        
         return "delete-menu";
     }
     

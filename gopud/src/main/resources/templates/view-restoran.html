@@ -23,17 +23,48 @@
         <br>
 
         <h2>Daftar Menu :</h2>
-        <div th:each="menu : ${menuList}">
-            <h3 th:text="'Nama : ' + ${menu.getNama()}"></h3>
-            <h3 th:text="'Harga : ' + ${menu.getHarga()}"></h3>
-            <h3 th:text="'Deskripsi : ' + ${menu.getDeskripsi()}"></h3>
-            <h3 th:text="'Durasi Penyajian : ' + ${menu.getDurasiMasak()}"></h3>
-            <br>
-            <td><a th:href="@{/menu/change/} + ${resto.getIdRestoran()} + '/' + ${menu.getId()}">Change Data Menu</a></td>
-            <br>
-            <td><a th:href="@{/menu/delete/} + ${resto.getIdRestoran()} + '/' + ${menu.getId()}">Delete Data Menu</a></td>
-            <br>
-        </div>
+        <form th:action="@{/menu/delete/}" th:object="${resto}" method="POST">
+        <table style="text-align: center">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Id Menu</th>
+                <th>Nama</th>
+                <th>Harga</th>
+                <th>Deskripsi</th>
+                <th>Durasi Penyajian</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="menu, iterationStatus : *{listMenu}" th:style="${iterationStatus.even} ? 'color:blue'">
+                <td th:text="${iterationStatus.count}"></td>
+                <td th:text="${menu.getId()}"></td>
+                <td th:text="${menu.getNama()}"></td>
+
+                <td th:if="${menu.getHarga()} >= 10000">Harga diatas 10k</td>
+                <td th:unless="${menu.getHarga()} >= 10000">Harga dibawah 10k</td>
+                
+                <td th:text="${menu.getDeskripsi()}"></td>
+                <td th:text="${menu.getDurasiMasak()} >=10 ? 'diatas 10' : 'dibawah 10'"></td>
+                
+                <td>
+                    <input type="checkbox" th:field="*{listMenu}" th:value="${menu.id}">
+                    <label for="${#ids.prev('listMenu')}">Hapus</label>
+                    <br>
+                    <a th:href="@{/menu/change/} + ${resto.getIdRestoran()} + '/' + ${menu.getId()}">Change Data</a>
+                </td>
+                
+            </tr>
+                    
+        </tbody>
+        </table>
+        <button type="submit" class="btn btn-sm btn-danger">Hapus yang dipilih</button>
+        </form>
+        <!--
+        
+        <a th:href="@{/menu/delete/} + ${resto.getIdRestoran()} + '/' + ${menu.getId()}">Delete Data Menu</a>
+        -->
         <td><a th:href="@{/menu/add/} + ${resto.getIdRestoran()}">Add Menu</a></td>
         </div>
 </body>
