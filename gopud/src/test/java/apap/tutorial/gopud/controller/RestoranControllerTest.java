@@ -19,9 +19,12 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
+import apap.tutorial.gopud.model.MenuModel;
 import apap.tutorial.gopud.model.RestoranModel;
 import apap.tutorial.gopud.service.MenuService;
 import apap.tutorial.gopud.service.RestoranService;
@@ -111,5 +114,61 @@ public class RestoranControllerTest{
         .andExpect(status().isOk())
         .andExpect(MockMvcResultMatchers.view().name("add-restoran"))
         .andExpect(model().attribute("namaResto", is(nama)));
-    } 
+    }
+
+    private MenuModel generateDummyMenuModel(int count, RestoranModel restoran) {
+        MenuModel dummyMenu = new MenuModel();
+        dummyMenu.setNama("dummy " + count);
+        dummyMenu.setHarga(BigInteger.valueOf(15000));
+        dummyMenu.setId((long)count);
+        dummyMenu.setDurasiMasak(count);
+        dummyMenu.setDeskripsi("deskripsi " + count);
+        dummyMenu.setRestoran(restoran);
+        return dummyMenu;
+    }
+
+    @Test
+    public void whenViewRestoranByIdIsCalledItShouldShowTheRestoranData()throws Exception{
+        RestoranModel dummyRestoran = generateDummyRestoranModel(1);
+        List<MenuModel> listMenu = new ArrayList<MenuModel>();
+
+        for (int loopTimes = 3; loopTimes > 0; loopTimes--) {
+            listMenu.add(generateDummyMenuModel(loopTimes, dummyRestoran));
+        }
+
+        when(restoranService.getRestoranByIdRestoran(1L)).thenReturn(Optional.of(dummyRestoran));
+
+        when(menuService.findAllMenuByIdRestoran(1L)).thenReturn(listMenu);
+
+        mockMvc.perform(get("/restoran/view?idRestoran=1"))
+    .andExpect(MockMvcResultMatchers.status().isOk())
+    .andExpect(content().string(Matchers.containsString("Informasi Restoran")))
+    .andExpect(content().string(Matchers.containsString("ID Restoran")))
+    .andExpect(model().attribute("resto", hasProperty("listMenu", hasSize(3))))
+    .andExpect(model().attribute("resto", hasProperty("listMenu", hasItem(
+        allOf(
+            hasProperty("id", is(1L)),
+            hasProperty("nama", is("dummy 1")),
+            hasProperty("deskripsi", is("deskripsi 1"))
+        )
+    ))))
+
+    .andExpect(model().attribute("resto", hasProperty("listMenu", hasItem(
+        allOf(
+            hasProperty("id", is(2L)),
+            hasProperty("nama", is("dummy 2")),
+            hasProperty("deskripsi", is("deskripsi 2"))
+        )
+    ))))
+
+    .andExpect(model().attribute("resto", hasProperty("listMenu", hasItem(
+        allOf(
+            hasProperty("id", is(3L)),
+            hasProperty("nama", is("dummy 3")),
+            hasProperty("deskripsi", is("deskripsi 3"))
+        )
+    ))));
+
+    verify(menuService, times(1)).findAllMenuByIdRestoran(1L);
+    }
 }
