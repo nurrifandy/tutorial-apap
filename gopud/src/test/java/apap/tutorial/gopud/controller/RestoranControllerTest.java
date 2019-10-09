@@ -141,34 +141,44 @@ public class RestoranControllerTest{
         when(menuService.findAllMenuByIdRestoran(1L)).thenReturn(listMenu);
 
         mockMvc.perform(get("/restoran/view?idRestoran=1"))
-    .andExpect(MockMvcResultMatchers.status().isOk())
-    .andExpect(content().string(Matchers.containsString("Informasi Restoran")))
-    .andExpect(content().string(Matchers.containsString("ID Restoran")))
-    .andExpect(model().attribute("resto", hasProperty("listMenu", hasSize(3))))
-    .andExpect(model().attribute("resto", hasProperty("listMenu", hasItem(
-        allOf(
-            hasProperty("id", is(1L)),
-            hasProperty("nama", is("dummy 1")),
-            hasProperty("deskripsi", is("deskripsi 1"))
-        )
-    ))))
+            .andExpect(MockMvcResultMatchers.status().isOk())
+            .andExpect(model().attribute("resto",
+                allOf(
+                    hasProperty("idRestoran", is(1L)),
+                    hasProperty("nama", is("dummy 1")),
+                    hasProperty("alamat", is("alamat 1"))
+                )
+            ))
+            .andExpect(content().string(Matchers.containsString("Informasi Restoran")))
+            .andExpect(content().string(Matchers.containsString("ID Restoran")))
+            .andExpect(model().attribute("resto", hasProperty("listMenu", hasSize(3))))
+            .andExpect(model().attribute("resto", hasProperty("listMenu", hasItem(
+                allOf(
+                    hasProperty("id", is(1L)),
+                    hasProperty("nama", is("dummy 1")),
+                    hasProperty("deskripsi", is("deskripsi 1")),
+                    hasProperty("durasiMasak", is(1))
+                )
+            ))))
 
-    .andExpect(model().attribute("resto", hasProperty("listMenu", hasItem(
-        allOf(
-            hasProperty("id", is(2L)),
-            hasProperty("nama", is("dummy 2")),
-            hasProperty("deskripsi", is("deskripsi 2"))
-        )
-    ))))
+            .andExpect(model().attribute("resto", hasProperty("listMenu", hasItem(
+                allOf(
+                    hasProperty("id", is(2L)),
+                    hasProperty("nama", is("dummy 2")),
+                    hasProperty("deskripsi", is("deskripsi 2")),
+                    hasProperty("durasiMasak", is(2))
+                )
+            ))))
 
-    .andExpect(model().attribute("resto", hasProperty("listMenu", hasItem(
-        allOf(
-            hasProperty("id", is(3L)),
-            hasProperty("nama", is("dummy 3")),
-            hasProperty("deskripsi", is("deskripsi 3"))
-        )
-    ))));
+            .andExpect(model().attribute("resto", hasProperty("listMenu", hasItem(
+                allOf(
+                    hasProperty("id", is(3L)),
+                    hasProperty("nama", is("dummy 3")),
+                    hasProperty("deskripsi", is("deskripsi 3")),
+                    hasProperty("durasiMasak", is(3))
+                )
+            ))));
 
-    verify(menuService, times(1)).findAllMenuByIdRestoran(1L);
+            verify(menuService, times(1)).findAllMenuByIdRestoran(1L);
     }
 }
