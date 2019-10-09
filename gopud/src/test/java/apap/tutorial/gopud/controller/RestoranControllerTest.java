@@ -48,8 +48,6 @@ public class RestoranControllerTest{
         mockMvc.perform(get("/")).andExpect(MockMvcResultMatchers.status().isOk());
     }
 
-    
-
     private RestoranModel generateDummyRestoranModel(int count) {
         RestoranModel dummyRestoranModel = new RestoranModel();
         dummyRestoranModel.setNama("dummy " + count);
@@ -113,7 +111,5 @@ public class RestoranControllerTest{
         .andExpect(status().isOk())
         .andExpect(MockMvcResultMatchers.view().name("add-restoran"))
         .andExpect(model().attribute("namaResto", is(nama)));
-    }
-
-    
+    } 
 }

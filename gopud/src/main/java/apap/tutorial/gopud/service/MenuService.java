@@ -10,9 +10,9 @@ public interface MenuService{
     
     List<MenuModel> findAllMenuByIdRestoran(Long idRestoran);
 
-    Optional<MenuModel> getMenuByIdMenu(Long idRestoran, Long id);
+    Optional<MenuModel> getMenuByIdMenu(Long id);
 
-    MenuModel changeMenu(Long idRestoran, MenuModel menuModel);
+    MenuModel changeMenu(MenuModel menuModel);
 
     void deleteMenu(MenuModel menu);
     
