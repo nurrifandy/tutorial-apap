@@ -4,10 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>View All Restoran</title>
+    <head th:replace="fragments/fragment :: headerFragment (pageTitle='View All')"></head>
+
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
 </head>
-<body>
-    
+<body class="text-center">
+        <nav th:replace="fragments/fragment :: navbar  (brand='View All')"></nav>
     <div th:if="${restoList == null}">
         <h1>Tidak ada restoran yang terdaftar!!!</h1>    
     </div>

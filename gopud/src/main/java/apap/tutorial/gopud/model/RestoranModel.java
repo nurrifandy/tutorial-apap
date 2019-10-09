@@ -95,4 +95,8 @@ public class RestoranModel implements Serializable{
     public List<MenuModel> getListMenu(){
         return this.listMenu;
     }
+
+    public void setListMenu(List<MenuModel> listMenu){
+        this.listMenu = listMenu;
+    }
 }
