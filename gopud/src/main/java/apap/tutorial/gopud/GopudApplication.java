@@ -10,5 +10,4 @@ public class GopudApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(GopudApplication.class, args);
 	}
-
 }

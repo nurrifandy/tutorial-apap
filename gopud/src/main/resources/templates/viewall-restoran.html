@@ -11,12 +11,12 @@
 </head>
 <body class="text-center">
         <nav th:replace="fragments/fragment :: navbar  (brand='View All')"></nav>
-    <div th:if="${restoList == null}">
+    <div class="h2">Daftar Seluruh Restoran</div>    
+    <div th:if="${restoranList == null}">
         <h1>Tidak ada restoran yang terdaftar!!!</h1>    
     </div>
-    <div th:unless="${restoList == null }">
-        <h2>Daftar seluruh Restoran</h2>
-        <div th:each="resto : ${restoList}">
+    <div th:unless="${restoranList == null }">
+        <div th:each="resto : ${restoranList}">
             <h3 th:text ="'ID Restoran: ' + ${resto.getIdRestoran()}"></h3>
             <h3 th:text ="'Nama Restoran: ' + ${resto.getNama()}"></h3>
             <h3 th:text ="'Alamat Restoran: ' + ${resto.getAlamat()}"></h3>
