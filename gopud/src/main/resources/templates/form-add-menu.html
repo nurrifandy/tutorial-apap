@@ -4,25 +4,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Add Menu</title>
+    <head th:replace="fragments/fragment :: headerFragment (pageTitle='Add Menu')"></head>
+
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
 </head>
-<body>
-    <h3>Tambah Produk</h3>
-    <form th:action="@{/menu/add}" th:object="${menu}" method="POST">
-        <input type="hidden" th:field="*{restoran}">
-        Nama : <br>
-        <input type="text" name="nama">
-        <br>
-        Deskripsi : <br>
-        <input type="text" name="deskripsi">
-        <br>
-        Harga : <br>
-        <input type="number" name="harga">
-        <br>
-        Durasi Masak (menit) : <br>
-        <input type="number" name="durasiMasak">
-        <br>
-        <button type="submit">Submit</button>
+<body class="text-center">
+    <nav th:replace="fragments/fragment :: navbar  (brand='Add Menu')"></nav>
+    <h3 class="p-4">Tambah Produk</h3>
+    <form th:action="@{'/menu/add/' + ${restoran.idRestoran}}" th:object="${restoran}" method="POST">
+        <input type="hidden" th:field="*{idRestoran}">
+        <div class="d-flex justify-content-center" >
+        <table>
+            <thead>
+                <tr>
+                    <th>Nama</th>
+                    <th>Deskripsi</th>
+                    <th>Harga</th>
+                    <th>Durasi Masak (menit)</th>
+                    <th>
+                        <button class="btn btn-primary" type="submit" name="addRow">Add Row</button>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="menu, rowStat : *{listMenu}">
+                    <td>
+                        <input type="text" th:field="*{listMenu[__${rowStat.index}__].nama}">
+                    </td>
+                    <td>
+                        <input type="text" th:field="*{listMenu[__${rowStat.index}__].deskripsi}">
+                    </td>
+                    <td>
+                        <input type="number" th:field="*{listMenu[__${rowStat.index}__].harga}">
+                    </td>
+                    <td>
+                        <input type="number" th:field="*{listMenu[__${rowStat.index}__].durasiMasak}">
+                    </td>
+                    <td>
+                        <button class="btn btn-danger" type="submit" name="removeRow" th:value="${rowStat.index}">Remove</button>
+                    </td>
+                </tr>
+                <div></div>
+            </tbody>
+        </table>
+    </div>
+        <button class="btn btn-primary" type="submit" name="save">Submit</button>
     </form>
 </body>
 </html>

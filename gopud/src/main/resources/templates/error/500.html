@@ -4,13 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <head th:replace="fragments/fragment :: headerFragment (pageTitle='Delete Menu')"></head>
-
+    <head th:replace="fragments/fragment :: headerFragment (pageTitle='500 Internal Server Error')"></head>
     <object th:include="fragments/fragment :: css" th:remove="tag"></object>
     <object th:include="fragments/fragment :: js" th:remove="tag"></object>
 </head>
 <body class="text-center">
-        <nav th:replace="fragments/fragment :: navbar  (brand='Delete Menu')"></nav>
-    <h2 th:text="'Menu telah berhasil dihapus.'"></h2>
+    <nav th:replace="fragments/fragment :: navbar (brand='500 Error')"></nav>
+    <div class="h2">Terjadi error pada internal server</div>
 </body>
 </html>
