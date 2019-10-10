@@ -6,6 +6,11 @@
 
 ## Tutorial 5
 
+“If it's worth building, it's worth testing.
+If it's not worth testing, why are you
+wasting your time working on it?”
+–Scott Ambler.
+
 ### Latihan
 1. - Sebelum
 ![screenshot](documentasi/latihan1_before.png)
