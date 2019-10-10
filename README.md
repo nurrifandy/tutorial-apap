@@ -12,16 +12,16 @@
 
 - Sesudah
 ![screenshot](documentasi/latihan1_after.png)
----
+
 ![screenshot](documentasi/latihan1_after_detail.png)
 
 2. - Sebelum
 ![screenshot](documentasi/latihan2_before.png)
----
+
 ![screenshot](documentasi/latihan2_before_detail.png)
 - Sesudah
 ![screenshot](documentasi/latihan2_after.png)
----
+
 ![screenshot](documentasi/latihan2_after_detail.png)
 
 3. - Sebelum
@@ -42,18 +42,17 @@ then.
 
 - bagian andthen merupakan hasil interaksi yang diharapkan, pada soal nomor 2 ini yaitu terdapat pada:
 ![screenshot](documentasi/bagian1.png)
----
+
 ![screenshot](documentasi/bagian2.png)
 
 2. Jelaskan perbedaan line coverage dan logic coverage.
-line coverage melakukan testing terhadap setiap line, sedangkan
-logic coverage melakukan testing terhadap method.
+- line coverage melakukan testing terhadap setiap line, sedangkan logic coverage melakukan testing terhadap logic method.
 
 3. Pada keadaan ideal, apa yang seharusnya dibuat terlebih dahulu, code atau unit test? Mengapa
 seperti itu? Apa akibatnya jika urutannya dibalik, adakah risiko tak terlihat yang mungkin
 terjadi?
-Unit test dibuat terlebih dahulu. Agar arsitektur yang dirancang tidak dibuat secara sembarangan sesuai keinginan developer. Penulisan working code jika dibuat Unit test terlebih dahulu sebisa mungkin merupakan code yang minimum namun dapat mencapai tujuan yaitu test-nya pass. Pembuatan working code lebih terstruktur dan terarah.
-Jika urutannya dibalik, maka terdapat kecenderungan bahwa pembuatan method, class dan behavior di dalamnya bersifat bebas sesuai keinginan developer karena semua yang dia buat dianggap benar, dan test yang dibuat harus mengikuti code yang telah dirancang. Padahal bisa saja, kode yang di tulis sulit untuk dilakukan test atau implementasi yang di terapkan terlalu kompleks.
+- Unit test dibuat terlebih dahulu. Agar arsitektur yang dirancang tidak dibuat secara sembarangan sesuai keinginan developer. Penulisan working code jika dibuat Unit test terlebih dahulu sebisa mungkin merupakan code yang minimum namun dapat mencapai tujuan yaitu test-nya pass. Pembuatan working code lebih terstruktur dan terarah.
+- Jika urutannya dibalik, maka terdapat kecenderungan bahwa pembuatan method, class dan behavior di dalamnya bersifat bebas sesuai keinginan developer karena semua yang dia buat dianggap benar, dan test yang dibuat harus mengikuti code yang telah dirancang. Padahal bisa saja, kode yang di tulis sulit untuk dilakukan test atau implementasi yang di terapkan terlalu kompleks.
 
 4. [Bonus] Jelaskan mengapa pada latihan no 3, main class spring tidak diikutsertakan ke dalam
 perhitungan coverage? Apa saja yang dapat menyebabkan suatu class dapat di-exclude dari
