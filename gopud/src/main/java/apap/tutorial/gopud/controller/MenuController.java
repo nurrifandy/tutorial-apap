@@ -88,7 +88,7 @@ public class MenuController{
         
         model.addAttribute("restoran", existingRestoran);
 
-        MenuModel existingMenu = menuService.getMenuByIdMenu(idRestoran,id).orElse(null);
+        MenuModel existingMenu = menuService.getMenuByIdMenu(id).orElse(null);
         
         model.addAttribute("menu", existingMenu);
 
@@ -98,7 +98,7 @@ public class MenuController{
     //Url untuk mengubah menu yang sebelumnya telah dilakukan perubahan.
     @PostMapping(value = "menu/change/{idRestoran}/{id}")
     public String changeMenuFormSubmit(@PathVariable Long idRestoran, @PathVariable Long id, @ModelAttribute MenuModel menu, Model model){
-        MenuModel newMenuData = menuService.changeMenu(idRestoran, menu);
+        MenuModel newMenuData = menuService.changeMenu(menu);
         model.addAttribute("menu", newMenuData);
         return "change-menu";
     }
