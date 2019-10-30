@@ -8,13 +8,11 @@ import java.util.Optional;
 public interface MenuService{
     void addMenu(MenuModel menu);
     
-    
     List<MenuModel> findAllMenuByIdRestoran(Long idRestoran);
 
+    Optional<MenuModel> getMenuByIdMenu(Long id);
 
-    Optional<MenuModel> getMenuByIdMenu(Long idRestoran, Long id);
-
-    MenuModel changeMenu(Long idRestoran, MenuModel menuModel);
+    MenuModel changeMenu(MenuModel menuModel);
 
     void deleteMenu(MenuModel menu);
     

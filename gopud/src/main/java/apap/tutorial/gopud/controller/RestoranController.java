@@ -118,7 +118,7 @@ public class RestoranController{
         // mengambil semua objek Restoran Model yang ada
         List<RestoranModel> listRestoran = restoranService.getRestoranList();
         // Add model restoran ke resto untuk di render
-        model.addAttribute("restoList", listRestoran);
+        model.addAttribute("restoranList", listRestoran);
 
         // return view template
         return "viewall-restoran";
