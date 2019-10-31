@@ -4,6 +4,7 @@ import java.util.Optional;
 import java.io.Serializable;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Null;
 import javax.validation.constraints.Size;
 import org.hibernate.annotations.OnDeleteAction;
 import java.math.BigInteger;
@@ -41,7 +42,7 @@ public class MenuModel implements Serializable{
     private String deskripsi;
 
     @ManyToOne(fetch = FetchType.EAGER,optional=false)
-    @JoinColumn(name="restoranId", referencedColumnName = "idRestoran", nullable=false)
+    @JoinColumn(name="restoranId", referencedColumnName = "idRestoran", nullable = true)
     @OnDelete(action= OnDeleteAction.CASCADE)
     @JsonIgnore
     private RestoranModel restoran;
