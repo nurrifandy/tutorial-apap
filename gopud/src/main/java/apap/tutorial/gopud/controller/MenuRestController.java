@@ -15,6 +15,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import apap.tutorial.gopud.model.MenuModel;
 import apap.tutorial.gopud.service.MenuRestService;
+import reactor.core.publisher.Mono;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -84,6 +85,11 @@ public class MenuRestController{
         }
     }
 
+    @GetMapping(value = "/recipes/search/excludeIngredients={excludeIngredients}")
+    private Mono<String> getStatus(@PathVariable String excludeIngredients)
+    {
+        return menuRestService.getReceipe(excludeIngredients);
     
+    }
     
 }

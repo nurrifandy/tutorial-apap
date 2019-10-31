@@ -11,13 +11,16 @@ import java.math.BigInteger;
 import javax.persistence.FetchType;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import org.hibernate.annotations.OnDelete;
 
 import java.util.List;
 import apap.tutorial.gopud.model.RestoranModel;
+
 @Entity
 @Table(name="menu")
+@JsonIgnoreProperties(value = "restoran",allowSetters = true)
 public class MenuModel implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,13 +41,13 @@ public class MenuModel implements Serializable{
 
     @NotNull
     @Size(max=50)
-    @Column(name="diskripsi", nullable = false)
+    @Column(name="deskripsi", nullable = false)
     private String deskripsi;
 
     @ManyToOne(fetch = FetchType.EAGER,optional=false)
     @JoinColumn(name="restoranId", referencedColumnName = "idRestoran", nullable = true)
     @OnDelete(action= OnDeleteAction.CASCADE)
-    @JsonIgnore
+    //@JsonIgnore
     private RestoranModel restoran;
     
     public Long getId(){
