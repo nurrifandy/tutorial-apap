@@ -6,6 +6,16 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ListMenu{
 
-    @JsonProperty("results")
-    private MenuDetail results;
+    @JsonProperty("nama")
+    private String nama;
+
+    @JsonProperty("harga")
+    private String harga;
+
+    @JsonProperty("durasiMasak")
+    private String durasiMasak;
+    
+    @JsonProperty("deskripsi")
+    private String deskripsi;
+    
 }

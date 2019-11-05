@@ -22,7 +22,10 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import apap.tutorial.gopud.model.RestoranModel;
+import apap.tutorial.gopud.rest.ChefDetail;
+import apap.tutorial.gopud.rest.ListMenu;
 import apap.tutorial.gopud.rest.RestoranDetail;
+import apap.tutorial.gopud.service.DemoRestService;
 import apap.tutorial.gopud.service.RestoranRestService;
 import reactor.core.publisher.Mono;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -32,6 +35,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class RestoranRestController{
     @Autowired
     private RestoranRestService restoranRestService;
+
+    @Autowired
+    private DemoRestService demoRestService;
 
     @PostMapping(value = "/restoran")
     private RestoranModel createRestoran(@Valid @RequestBody RestoranModel restoran, BindingResult bindingResult){
@@ -99,6 +105,16 @@ public class RestoranRestController{
     @GetMapping(value="/full")
     public Mono<RestoranDetail> postStatus() {
         return restoranRestService.postStatus();
+    }
+
+    @GetMapping(value = "/restoran/chef")
+    private Mono<String> getChef(@RequestParam(value = "nama") String nama){
+        return demoRestService.getChefRestoran(nama);
+    }
+
+    @GetMapping(value="/full/1")
+    public Mono<ChefDetail> postChef() {
+        return demoRestService.postChefRestoran();
     }
     
 }
