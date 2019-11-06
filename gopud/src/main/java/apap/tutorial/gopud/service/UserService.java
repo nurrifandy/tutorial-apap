@@ -4,5 +4,12 @@ import apap.tutorial.gopud.model.UserModel;
 
 public interface UserService{
     UserModel addUser(UserModel user);
-    public String encrypt(String password);
+    
+    String encrypt(String password);
+
+    UserModel findByUsername(String username);
+
+    Boolean isEquals(String inputPassword, String password);
+
+    UserModel updatePassword(UserModel user);
 }

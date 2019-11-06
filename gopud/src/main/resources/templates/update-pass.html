@@ -1,12 +1,53 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://thymeLeaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>update</title>
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
 </head>
-<body>
-    
+<body class="h100 w100">
+    <div>
+        
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                    <div class="mt-4">
+                            <div class="alert alert-danger text-center" role="alert" th:if="${notEquals}">Password yang anda masukkan salah!</div>
+                            <div class="alert alert-danger text-center" role="alert" th:if="${notMatch}">Password yang anda masukkan tidak sesuai!</div>
+                    </div>
+                <divc class="card">
+                    <div class="card-header">Update Password</div>
+                    <div class="card-body">
+                        <div>
+                            <div th:if="${param.erro}">
+                                <span style="color: red;">Invalid Password new Password or old Passwaord</span>
+                            </div>
+                            <form th:action="@{/user/update}" method="POST">
+                                <div class="row form-group">
+                                    <label for="oldPassword" class="col-sm-4">Password Lama:</label>
+                                    <input type="password" id="oldPassword" class="col-sm-8 form-control input-sm" name="oldPassword">
+                                </div>
+
+                                <div class="row form-group">
+                                    <label for="newPassword" class="col-sm-4">Password Baru:</label>
+                                    <input type="password" id="newPassword" class="col-sm-8 form-control input-sm" name="newPassword" pattern="(?=.*\d)(?=.*[A-Za-z]).{8,}" title="Password harus mengandung angka dan huruf, serta minimal memiliki 8 character">
+                                </div>
+
+                                <div class="row form-group">
+                                    <label for="confirmPassword" class="col-sm-4">Konfirmasi Password Baru:</label>
+                                    <input type="password" id="confirmPassword" class="col-sm-8 form-control input-sm" name="confirmPassword">
+                                </div>
+
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
