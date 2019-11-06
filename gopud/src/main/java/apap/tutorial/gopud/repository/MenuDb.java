@@ -10,5 +10,6 @@ import java.util.Optional;
 @Repository
 public interface MenuDb extends JpaRepository<MenuModel, Long>{
     List<MenuModel> findByRestoranIdRestoran(Long restoranId);
-   Optional<MenuModel> findById(Long id);
+    Optional<MenuModel> findById(Long id);
+    List<MenuModel> findAllByOrderByNamaAsc();
 }

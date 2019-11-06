@@ -4,6 +4,16 @@
 
 * **nur.rifandy** - *1706984695* - *APAP-C*
 
+## Tutorial 6
+1. Apa itu postman? Apa kegunaan dari postman?
+Postman merupakan sebuah aplikasi/tools yang digunakan untuk menguji atau melakukan testing terhadap website, seperti testing api, dan rest yang dibuat oleh seorang developer. 
+
+2. Apa kegunaan dari annotation @JsonIgnoreProperties?
+Biasanya digunakan untuk untuk mencari beberapa properti di json yang secara tidak langsung tidak ingin di tulis/tidak ingin di petakan.
+
+3. Apa itu ResponseEntity dan apa kegunaannya?
+ResponEntity biasanya digunakan untuk memberi response untuk sebuah request yang biasanya digunakan ketika melakukan test menggunakan api. 
+
 ## Tutorial 5
 
 “If it's worth building, it's worth testing.
