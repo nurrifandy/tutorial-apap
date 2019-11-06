@@ -14,6 +14,8 @@ Otorisasi merupakan pemberian izin pengguna sesuai dengan hak dan role dari seti
     public void configurationAuthentication(AuthenticationManagerBuilder auth) throws Exception{
         auth.userDetailsService(userDetailsService).passwordEncoder(encoder());
     }
+
+
 .antMatchers("/restoran/**").hasAnyAuthority("MERCHANT")
 
 
