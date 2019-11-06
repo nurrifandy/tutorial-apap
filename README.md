@@ -4,6 +4,32 @@
 
 * **nur.rifandy** - *1706984695* - *APAP-C*
 
+## Tutorial 7
+
+1. Jelaskan secara singkat perbedaan Otentikasi dan Otorisasi! Di bagian mana (dalam kode yang telah anda buat) konsep tersebut diimplementasi?
+Otentikasi merupakan proses untuk memastikan/memverifikasi bahwa user yang melakukan akses adalah user yang benar. 
+
+Otorisasi merupakan pemberian izin pengguna sesuai dengan hak dan role dari setiap pengguna.
+@Autowired
+    public void configurationAuthentication(AuthenticationManagerBuilder auth) throws Exception{
+        auth.userDetailsService(userDetailsService).passwordEncoder(encoder());
+    }
+.antMatchers("/restoran/**").hasAnyAuthority("MERCHANT")
+
+
+2. Apa itu BCryptPasswordEncoder? Jelaskan secara singkat cara kerjanya!
+BCryptPasswordEncoder merupakan algoritma atau model yang dapat digunakan untuk mengenkripsi sebuah password. password yang di input oleh user akan di enkripsi menjadi sebuah sebuah string. String tersebut merupakan gabungan dari kode algorithm, Algorithm options, Salt, dan Hashed password.  
+
+
+3. Jelaskan secara singkat apa itu UUID dan mengapa kita memakai UUID di UserModel.java?
+UUID merupakan kode identifikasi unik yang diberikan oleh sistem. Alasan menggunakan UUID pada kelas UserModel.java adalah agar data yang disimpan dapat terdistribusi dengan baik.
+
+
+4. Apa kegunaan class UserDetailsServiceImpl.java? Mengapa harus ada class tersebut padahal kita sudah memiliki class UserRoleServiceImpl.java?
+UserDetailsServiceImpl digunakan untuk mendefinisikan data user yang sedang login untuk dilakukan authorization server.
+Kelas tersebut merupakan implement dari library UserDetailsService yang dapat digunakan untuk mempermudah dalam proses authorization.
+
+
 ## Tutorial 6
 1. Apa itu postman? Apa kegunaan dari postman?
 Postman merupakan sebuah aplikasi/tools yang digunakan untuk menguji atau melakukan testing terhadap website, seperti testing api, dan rest yang dibuat oleh seorang developer. 
