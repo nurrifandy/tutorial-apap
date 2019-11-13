@@ -28,6 +28,7 @@ function App(){
                 items={dummyItems}
                 onItemClick={handleItemClick}/>
               </div>
+              
               <div className="col-sm">
               <List
                 title="My Favorite"

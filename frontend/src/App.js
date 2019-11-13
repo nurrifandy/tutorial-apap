@@ -21,6 +21,16 @@ export default class App extends React.Component{
 
     this.setState({favItems:newItems});
   }
+
+  handleItemFix=item =>{
+    const newItems = [...this.state.favItems];
+    const newItem = {...item};
+
+    const targetInd = newItems.findIndex(it => it.id === newItem.id);
+    if(targetInd<0) newItems.push(newItem);
+    this.setState({favItems:newItems});
+  }
+
   render(){
     const {favItems}=this.state;
     return (
@@ -35,9 +45,10 @@ export default class App extends React.Component{
               <List
               title="Our Menu"
               items={dummyItems}
-              onItemClick={this.handleItemClick}/>
+              onItemClick={this.handleItemFix}/>
             </div>
             <div className="col-sm">
+            <input type="checkbox"/>Show Favorite
             <List
               title="My Favorite"
               items={favItems}
