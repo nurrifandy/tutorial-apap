@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import List from "./components/List";
 import dummyItems from "./items.json";
+import EmptyState from './components/EmptyState';
 
 export default class App extends React.Component{
   constructor(props){
@@ -44,13 +45,13 @@ export default class App extends React.Component{
   render(){
     const {favItems}=this.state;
     const content = this.state.checked
-    ? <div>
+    ? favItems.length==0?<EmptyState/>:<div>
       <List
               title="My Favorite"
               items={favItems}
               onItemClick={this.handleItemClick}/>
     </div>:null;
-    
+
     return (
       <div className="container-fluid">
         <h1 className="text-center">
