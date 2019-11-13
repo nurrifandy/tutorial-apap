@@ -8,17 +8,21 @@
 
 ### Latihan 
 1. Menambahkan condition di dalam Item.js, dimana jika 'checked' bernilai false maka checked tidak akan di tampilkan. dan baru akan di tampilkan pada bagian kiri ketika checked bernilai true.
+
 ![screenshot](documentasi/1.png)
 
 2. Membuat function baru pada App.js. dimana function tersebut tidak akan menghilangkan menu yang telah di pilih sebagai menu favorite.
+
 ![screenshot](documentasi/2.png)
 ![screenshot](documentasi/2.1.png)
 
 3. Membuat sebuah function yang akan menghandle untuk menampilkan dan menyembunyikan menu favorite, serta menambahkan flag "true or false" untuk menentukan menu tersebut di tampilkan atau tidak.
+
 ![screenshot](documentasi/3.0.png)
 ![screenshot](documentasi/3.1.png)
 
 4. Membuat components baru bernama EmptyState, dimana component tersebut mengembalikan html yang menunjukkan bahwa belum ada menu yang dipilih. Serta untuk memilih tampilan mana yang akan di tampilkan, maka dibuat content yang berisi sesuai condition yang telah dipilih.
+
 ![screenshot](documentasi/4.0.png)
 ![screenshot](documentasi/4.1.png)
 
