@@ -15,7 +15,6 @@ export default class App extends React.Component{
   }
 
   handleChange() {
-    const newItems = [...this.state.favItems];
     this.setState({
       checked: !this.state.checked
     })
