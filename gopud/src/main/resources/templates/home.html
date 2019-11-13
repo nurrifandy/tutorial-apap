@@ -15,9 +15,41 @@
 
     <h2>Selamat datang di GOPUD!</h2>
     <h3>Restoran terbaik di seluruh Indonesia</h3>
+
+    <div>
+        <h2 th:text="'Hello ' + ${#httpServletRequest.remoteUser} + ' '">Login as</h2>
+    </div>
     <button class="btn btn-primary">
         <a th:href="@{/restoran/view-all}" style="color:black">View All Restoran</a>
     </button>
+
+
+    <div>
+            <div class="row">
+                <div class="col-md-6 mt-3">
+                    <div class="card">
+                        <div class="card-header">Tambah User Baru</div>
+                        <div class="card-body">
+                            <form th:action="@{/user/addUser}" method="POST">
+                                <label for="username">Usernama</label>
+                                <input type="text" name="username" id="username" class="form-control">
+                                <label for="password">password</label>
+                                <input type="text" name="password" id="password" class="form-control" pattern="(?=.*\d)(?=.*[A-Za-z]).{8,}" title="Password harus mengandung angka dan huruf, serta minimal memiliki 8 character">
+    
+                                <label for="role">Role</label>
+                                <select name="role" id="role" class="form-control">
+                                    <option value="" selected>--Pilih Role--</option>
+                                    <option th:each="roleAvailable:${listRole}" th:value="${roleAvailable.id}" th:text="${roleAvailable.role}"></option>
+                                </select>
+    
+                                <button type="submit" class="btn btn-primary mt-3">Simpan</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     <hr>
     <div class="row text-center">
         <div class="col-md-6">
@@ -32,7 +64,7 @@
             </div>
         </div>
     </div>
-
+    <hr>
     <div class="row">
         <div class="col-md-6">
             <div class="card">

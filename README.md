@@ -4,6 +4,38 @@
 
 * **nur.rifandy** - *1706984695* - *APAP-C*
 
+## Tutorial 7
+
+1. Jelaskan secara singkat perbedaan Otentikasi dan Otorisasi! Di bagian mana (dalam kode yang telah anda buat) konsep tersebut diimplementasi?
+Otentikasi merupakan proses untuk memastikan/memverifikasi bahwa user yang melakukan akses adalah user yang benar. 
+            .anyRequest().authenticated()
+            .and()
+            .formLogin()
+            .loginPage("/login").permitAll()
+            .and()
+            .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login").permitAll();
+
+Otorisasi merupakan pemberian izin pengguna sesuai dengan hak dan role dari setiap pengguna.
+            .authorizeRequests()
+            .antMatchers("/css/**").permitAll()
+            .antMatchers("/js/**").permitAll()
+            .antMatchers("/restoran/**").hasAnyAuthority("MERCHANT")
+            .antMatchers("/user/addUser").hasAnyAuthority("ADMIN")
+
+
+2. Apa itu BCryptPasswordEncoder? Jelaskan secara singkat cara kerjanya!
+BCryptPasswordEncoder merupakan algoritma atau model yang dapat digunakan untuk mengenkripsi sebuah password, dari sebuah string yang mudah untuk di baca menjadi string yang sulit untuk di baca. password yang di input oleh user akan di enkripsi menjadi sebuah sebuah string. String tersebut merupakan gabungan dari kode algorithm, Algorithm options, Salt, dan Hashed password.  
+
+
+3. Jelaskan secara singkat apa itu UUID dan mengapa kita memakai UUID di UserModel.java?
+UUID merupakan kode identifikasi unik yang diberikan oleh sistem, nilai yang di sediakan oleh UUID mempunyai panjang 128bit yang pada dasarnya merepresentasikan sebuah objek. Alasan menggunakan UUID pada kelas UserModel.java adalah agar data yang disimpan dapat terdistribusi dengan baik, selain itu penggunaan UUID dapat meningkatkan keamanan data user.
+
+
+4. Apa kegunaan class UserDetailsServiceImpl.java? Mengapa harus ada class tersebut padahal kita sudah memiliki class UserRoleServiceImpl.java?
+UserDetailsServiceImpl digunakan untuk mendefinisikan data user yang sedang login untuk dilakukan authorization server.
+Kelas tersebut merupakan implement dari library UserDetailsService yang dapat digunakan untuk mempermudah dalam proses authorization.
+
+
 ## Tutorial 6
 1. Apa itu postman? Apa kegunaan dari postman?
 Postman merupakan sebuah aplikasi/tools yang digunakan untuk menguji atau melakukan testing terhadap website, seperti testing api, dan rest yang dibuat oleh seorang developer. 

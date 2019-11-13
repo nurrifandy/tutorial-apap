@@ -32,7 +32,7 @@ public class RestoranController{
     @Autowired
     private MenuService menuService;
 
-    @RequestMapping("/")
+    @RequestMapping("/-/")
     public String home(){
         return "home";
     }
