@@ -26,6 +26,8 @@
 ![screenshot](documentasi/4.0.png)
 ![screenshot](documentasi/4.1.png)
 
+Referensi dalam pengerjaan : https://stackoverflow.com/questions/36134236/how-to-hide-or-show-a-div-if-checkbox-is-selected-in-react-js
+
 ## Tutorial 7
 
 1. Jelaskan secara singkat perbedaan Otentikasi dan Otorisasi! Di bagian mana (dalam kode yang telah anda buat) konsep tersebut diimplementasi?
