@@ -8,9 +8,18 @@ export default class App extends React.Component{
   constructor(props){
     super(props);
     this.state={
-      favItems:[]
+      favItems:[],checked: false
     }
+    this.handleChange = this.handleChange.bind(this);
   }
+
+  handleChange() {
+    const newItems = [...this.state.favItems];
+    this.setState({
+      checked: !this.state.checked
+    })
+  }
+
   handleItemClick=item =>{
     const newItems = [...this.state.favItems];
     const newItem = {...item};
@@ -19,7 +28,7 @@ export default class App extends React.Component{
     if(targetInd<0) newItems.push(newItem);
     else newItems.splice(targetInd, 1);
 
-    this.setState({favItems:newItems});
+    this.setState({favItems:newItems,checked: this.state.checked});
   }
 
   handleItemFix=item =>{
@@ -28,11 +37,20 @@ export default class App extends React.Component{
 
     const targetInd = newItems.findIndex(it => it.id === newItem.id);
     if(targetInd<0) newItems.push(newItem);
-    this.setState({favItems:newItems});
+    this.setState({favItems:newItems, checked: this.state.checked});
   }
+
 
   render(){
     const {favItems}=this.state;
+    const content = this.state.checked
+    ? <div>
+      <List
+              title="My Favorite"
+              items={favItems}
+              onItemClick={this.handleItemClick}/>
+    </div>:null;
+    
     return (
       <div className="container-fluid">
         <h1 className="text-center">
@@ -48,11 +66,8 @@ export default class App extends React.Component{
               onItemClick={this.handleItemFix}/>
             </div>
             <div className="col-sm">
-            <input type="checkbox"/>Show Favorite
-            <List
-              title="My Favorite"
-              items={favItems}
-              onItemClick={this.handleItemClick}/>
+            <input type="checkbox" checked={this.state.checked} onChange={this.handleChange}/>Show Favorite
+            {content}
             </div>
           </div>
         </div>
