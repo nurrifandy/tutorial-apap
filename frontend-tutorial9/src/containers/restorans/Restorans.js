@@ -47,12 +47,16 @@ class Restorans extends Component{
         console.log("render()");
         return(
             <React.Fragment>
-                <div>
-                    Hello Welcome to GOPUD
-                </div>
                 <div className={classes.Title}>All Restorans</div>
+                <div className={classes.ButtonLayout}>
+                    <button className={classes.AddRestoranButton}
+                    onClick={this.addRestoranHandles}>
+                        + Add New Restoran
+                    </button>
+                </div>
                 <div className={classes.Restorans}>
-                    {this.state.restorans.map(restoran =>
+                    {this.state.restorans && 
+                    this.state.restorans.map(restoran =>
                         <Restoran 
                         key = {restoran.id}
                         nama= {restoran.nama}
@@ -60,7 +64,6 @@ class Restorans extends Component{
                         nomorTelepon = {restoran.nomorTelepon}
                         />
                         )}
-                    Restoran 1, 2, 3, 4, etc
                 </div>
                 {/* <button onClick={this.loadingHandler}>changeState</button> */}
             </React.Fragment>
