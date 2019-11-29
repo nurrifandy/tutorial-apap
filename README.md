@@ -4,6 +4,12 @@
 
 * **nur.rifandy** - *1706984695* - *APAP-C*
 
+## Tutorial 9
+
+### Referensi
+1. https://stackoverflow.com/questions/51726391/how-to-create-a-search-field-in-reactjs
+2. https://stackoverflow.com/questions/40232847/how-to-implement-pagination-in-reactjs 
+
 ## Tutorial 8
 
 ### Latihan 

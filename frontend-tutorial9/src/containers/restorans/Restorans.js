@@ -19,8 +19,11 @@ class Restorans extends Component{
             rating:"",
             filteredRestoran:[],
             search:"",
-            isSearch:true
+            isSearch:true,
+            currentPage : 1,
+            restoransPerPage : 5
         }
+        this.handleClick = this.handleClick.bind(this);
     }
 
     componentDidMount(){
@@ -34,6 +37,12 @@ class Restorans extends Component{
     canceledHandler = () => {
         this.setState({ isCreate:false, isEdit:false});
     }
+
+    handleClick(event) {
+        this.setState({
+          currentPage: Number(event.target.id)
+        });
+      }
 
     handleInputChange = event => {
         const search = event.target.value;
@@ -184,6 +193,30 @@ class Restorans extends Component{
     render(){
         console.log("render()");
         const { isSearch } = this.state;
+        const { restorans, currentPage, restoransPerPage } = this.state;
+
+        // Logic for displaying todos
+        const indexOfLastRestoran = currentPage * restoransPerPage;
+        const indexOfFirstRestoran = indexOfLastRestoran - restoransPerPage;
+        const currentRestorans = restorans.slice(indexOfFirstRestoran, indexOfLastRestoran);
+
+        // Logic for displaying page numbers
+        const pageNumbers = [];
+        for (let i = 1; i <= Math.ceil(restorans.length / restoransPerPage); i++) {
+        pageNumbers.push(i);
+        }
+        const renderPageNumbers = pageNumbers.map(number => {
+            return (
+                <button
+                key={number}
+                id={number}
+                onClick={this.handleClick}
+                >
+                {number}
+                </button>
+            );
+            });
+
         return(
             <React.Fragment>
                 <Modal show={this.state.isCreate || this.state.isEdit}
@@ -218,7 +251,7 @@ class Restorans extends Component{
                 </div>
                 <div className={classes.Restorans}>
                     {this.state.restorans && isSearch &&
-                    this.state.restorans.map(restoran =>
+                    currentRestorans.map(restoran =>
                         <Restoran 
                         key = {restoran.id}
                         nama= {restoran.nama}
@@ -229,6 +262,8 @@ class Restorans extends Component{
                         />
                         )}
                 </div>
+                {renderPageNumbers}
+                
                 {/* <button onClick={this.loadingHandler}>changeState</button> */}
             </React.Fragment>
         )
