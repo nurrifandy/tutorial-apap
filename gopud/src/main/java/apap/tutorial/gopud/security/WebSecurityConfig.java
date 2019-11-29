@@ -1,5 +1,7 @@
 package apap.tutorial.gopud.security;
 
+import java.util.Arrays;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,6 +12,9 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 @Configuration
 @EnableWebSecurity
@@ -23,11 +28,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
             .antMatchers("/js/**").permitAll()
             .antMatchers("/restoran/**").hasAnyAuthority("MERCHANT")
             .antMatchers("/user/addUser").hasAnyAuthority("ADMIN")
+            .antMatchers("/api/**").permitAll()
             .anyRequest().authenticated()
             .and()
             .formLogin()
             .loginPage("/login").permitAll()
             .and()
+            .csrf().disable()
             .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login").permitAll();
     }
 

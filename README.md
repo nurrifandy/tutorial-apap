@@ -4,6 +4,34 @@
 
 * **nur.rifandy** - *1706984695* - *APAP-C*
 
+## Tutorial 9
+
+### Referensi
+1. https://stackoverflow.com/questions/51726391/how-to-create-a-search-field-in-reactjs
+2. https://stackoverflow.com/questions/40232847/how-to-implement-pagination-in-reactjs 
+
+### Pertanyaan
+1. Ceritakan langkah - langkah yang kalian lakukan untuk solve LATIHAN no.1, dan mengapa kalian melakukan langkah - langkah tersebut?
+untuk menyelesaikan latihan 1, maka hal yang perlu dilakukan adalah menge set setiap varibel menjadi string kosong. Hal tersebut dilakukan ketika tombol add restoran di klik, maka variable yang sebelumnya mempunyai value, akan di reset menjadi variable kosong kembali.
+2. Jelaskan fungsi dari async dan await!
+- async berfungsi untuk mendefine sebuah asyncronous function, async membuat fungsi di jalankan secara parallel.
+- await merupakan sebuah operator yang digunakan untuk menunggu sebuah promise. await dijalankan secara squensial di dalam sebuah async blok. Selain itu, await berfungsi untuk membuat jvaScripts menunggu samapi sebuah promise mengembalikan sebuah result.
+
+3. Masukkan jawaban dari TODO (Screenshot) pada Component Lifecycle pada pertanyaan ini.
+- Tampilan console ketika localhost pertama kali dijalankan. yang dijalankan pertama kali adalah componentDidMount(), setelah dilakukan render.
+![screenshot](documentasi/ss1.png)
+- Tampilan console ketika tombol changeState di klik. Pada console yang di tampilkan berikutnya adalah shouldComponentUpdate().
+![screenshot](documentasi/ss2.png)
+
+
+4. Jelaskan fungsi dari componentDidMount, shouldComponentUpdate, componentDidUpdate, componentWillReceiveProps, componentWillUnmount.
+- componentDidMount : dijalankan ketika component berhasil di Mount.
+- shouldComponentUpdate : berfungsi untuk agar programer dapat menentukan apakah component tersebut perlu di update ketika ada perubahan prop ataupun state.
+- componentDidUpdate : dijalankan ketika data(prop atau state) berhasil di update.
+- componentWillReceiveProps : dijalankan pertama kali ketika mendapatkan props baru.
+- componentWillMount : dijalankan sebelum dilakukan render.
+Notes : Penjelasan harus mencantumkan “kapan fungsi dipanggil” dan “use case apa saja
+yang biasanya menggunakan lifecycle method tersebut”.
 ## Tutorial 8
 
 ### Latihan 
