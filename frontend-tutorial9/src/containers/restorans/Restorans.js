@@ -16,7 +16,10 @@ class Restorans extends Component{
             nama: "",
             alamat:"",
             nomorTelepon:"",
-            rating:""
+            rating:"",
+            filteredRestoran:[],
+            search:"",
+            isSearch:true
         }
     }
 
@@ -31,6 +34,21 @@ class Restorans extends Component{
     canceledHandler = () => {
         this.setState({ isCreate:false, isEdit:false});
     }
+
+    handleInputChange = event => {
+        const search = event.target.value;
+        this.setState({isSearch : false})
+        this.setState(prevState => {
+          const filteredRestoran = prevState.restorans.filter(restoran => {
+            return restoran.nama.toLowerCase().startsWith(search.toLowerCase());
+          });
+    
+          return {
+            search,
+            filteredRestoran
+          };
+        });
+      };
 
     loadRestorans = async() =>  {
         const fetchedRestorans = [];
@@ -165,6 +183,7 @@ class Restorans extends Component{
 
     render(){
         console.log("render()");
+        const { isSearch } = this.state;
         return(
             <React.Fragment>
                 <Modal show={this.state.isCreate || this.state.isEdit}
@@ -178,8 +197,27 @@ class Restorans extends Component{
                         + Add New Restoran
                     </button>
                 </div>
+                <div className="searchForm">
+                    <form>
+                        <input
+                        placeholder="find restoran . . ."
+                        value={this.state.search}
+                        onChange={this.handleInputChange} />
+                    </form>
+                    <div>{this.state.filteredRestoran.map(restoran => 
+                        <Restoran 
+                        key = {restoran.id}
+                        nama= {restoran.nama}
+                        alamat = {restoran.alamat}
+                        nomorTelepon = {restoran.nomorTelepon}
+                        edit = {()=> this.editRestoranHandler(restoran)}
+                        delete = {()=>this.deleteRestoranHandler(restoran.idRestoran)}
+                        />
+                        )}
+                        </div>
+                </div>
                 <div className={classes.Restorans}>
-                    {this.state.restorans && 
+                    {this.state.restorans && isSearch &&
                     this.state.restorans.map(restoran =>
                         <Restoran 
                         key = {restoran.id}
