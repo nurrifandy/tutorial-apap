@@ -2,21 +2,34 @@ import React, {Component} from 'react';
 import Restoran from './Restoran';
 import classes from "./Restorans.module.css";
 import axios from './axios-restoran';
+import Modal from '../../components/UI/Modal/Modal';
+import Button from '../../components/UI/Button/Button';
 
 class Restorans extends Component{
     constructor(props){
         super(props);
         this.state={
-            restorans:
-            [
-                
-            ],
+            restorans:[],
+            isCreate:false,
             isLoading:true,
+            isEdit:false,
+            nama: "",
+            alamat:"",
+            nomorTelepon:"",
+            rating:""
         }
     }
 
     componentDidMount(){
         this.loadRestorans();
+    }
+
+    addRestoranHandler = () =>{
+        this.setState({ isCreate:true, nama:"",alamat:"",nomorTelepon:"", rating:""});
+    }
+
+    canceledHandler = () => {
+        this.setState({ isCreate:false, isEdit:false});
     }
 
     loadRestorans = async() =>  {
@@ -33,6 +46,65 @@ class Restorans extends Component{
         });
     };
 
+    changeHandler = event => {
+        const{name, value}=event.target;
+        this.setState({[name]:value});
+    };
+
+    async deleteRestoranHandler(restoranId){
+        await axios.delete('/restoran/${restoranId}');
+        await this.loadRestorans();
+    }
+
+    editRestoranHandler(restoran){
+        this.setState({
+            isEdit:true,
+            idRestoran:restoran.idRestoran,
+            nama:restoran.nama,
+            nomorTelepon:restoran.nomorTelepon,
+            rating:restoran.rating,
+            alamat:restoran.alamat
+        })
+    }
+
+    submitEditRestoranHandler=event=>{
+        console.log("editing")
+        event.preventDefault();
+        this.setState({ isLoading:true });
+        this.editRestoran();
+        this.canceledHandler();
+    };
+
+    async editRestoran(){
+        const restoranToEdit = {
+            idRestoran:this.state.idRestoran,
+            nama:this.state.nama,
+            alamat:this.state.alamat,
+            nomorTelepon:this.state.nomorTelepon,
+            rating:this.state.rating
+        };
+        await axios.put("/restoran/" + this.state.idRestoran,restoranToEdit);
+        await this.loadRestorans();
+        this.canceledHandler();
+    }
+    submitAddRestoranHandler = event => {
+        event.preventDefault();
+        this.setState({isLoading:true});
+        this.addRestoran();
+        this.canceledHandler();
+    }
+
+    async addRestoran(){
+        const restoranToAdd = {
+            nama :this.state.nama,
+            alamat:this.state.alamat,
+            nomorTelepon:this.state.nomorTelepon,
+            rating:this.state.rating
+        };
+        await axios.post("/restoran", restoranToAdd);
+        await this.loadRestorans();
+    }
+
     // shouldComponentUpdate(nextProps, nextState){
     //     console.log("shouldComponentUpdate()");
     //     return true;
@@ -43,14 +115,66 @@ class Restorans extends Component{
     //     this.setState({isLoading: !(currentIsLoading)});
     //     console.log(this.state.isLoading);
     // }
+
+    renderForm(){
+        const {isEdit}  = this.state;
+        return(
+            <form>
+                <input
+                className={classes.Input}
+                name='nama'
+                type='text'
+                placeholder='Nama'
+                value={this.state.nama}
+                onChange={this.changeHandler}
+                />
+                <input
+                className={classes.Input}
+                name='nomorTelepon'
+                type='number'
+                placeholder='Nomor Telepon'
+                value={this.state.nomorTelepon}
+                onChange={this.changeHandler}
+                />
+                <input
+                className={classes.TextArea}
+                name='alamat'
+                type='text'
+                placeholder='Alamat'
+                value={this.state.alamat}
+                onChange={this.changeHandler}
+                />
+                <input
+                className={classes.Input}
+                name='rating'
+                type='number'
+                placeholder='Rating'
+                value={this.state.rating}
+                onChange={this.changeHandler}
+                />
+                <Button btnType='Succes' onClick={isEdit ? this.submitEditRestoranHandler:this.submitAddRestoranHandler}>
+                    Submit
+                </Button>
+                <Button btnType='Danger' onClick={this.canceledHandler}>
+                    Cancel
+                </Button>
+                
+            </form>
+        )
+    }
+
     render(){
         console.log("render()");
         return(
             <React.Fragment>
+                <Modal show={this.state.isCreate || this.state.isEdit}
+                modalClosed={this.canceledHandler}>
+                    {this.renderForm()}
+                </Modal>
                 <div className={classes.Title}>All Restorans</div>
                 <div className={classes.ButtonLayout}>
                     <button className={classes.AddRestoranButton}
-                    onClick={this.addRestoranHandles}>
+                    onClick={this.addRestoranHandler}>
                         + Add New Restoran
                     </button>
                 </div>
@@ -62,6 +186,8 @@ class Restorans extends Component{
                         nama= {restoran.nama}
                         alamat = {restoran.alamat}
                         nomorTelepon = {restoran.nomorTelepon}
+                        edit = {()=> this.editRestoranHandler(restoran)}
+                        delete = {()=>this.deleteRestoranHandler(restoran.idRestoran)}
                         />
                         )}
                 </div>
