@@ -29,8 +29,8 @@ import reactor.core.publisher.Mono;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/api/v1")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class RestoranRestController{
     @Autowired
     private RestoranRestService restoranRestService;
