@@ -27,6 +27,7 @@ class Restorans extends Component{
     }
 
     componentDidMount(){
+        //console.log("componentDidMount()");
         this.loadRestorans();
     }
 
@@ -132,16 +133,16 @@ class Restorans extends Component{
         await this.loadRestorans();
     }
 
-    // shouldComponentUpdate(nextProps, nextState){
-    //     console.log("shouldComponentUpdate()");
-    //     return true;
-    // }
+    shouldComponentUpdate(nextProps, nextState){
+        console.log("shouldComponentUpdate()");
+        return true;
+    }
 
-    // loadingHandler=()=>{
-    //     const currentIsLoading = this.state.isLoading;
-    //     this.setState({isLoading: !(currentIsLoading)});
-    //     console.log(this.state.isLoading);
-    // }
+    loadingHandler=()=>{
+        const currentIsLoading = this.state.isLoading;
+        this.setState({isLoading: !(currentIsLoading)});
+        console.log(this.state.isLoading);
+    }
 
     renderForm(){
         const {isEdit}  = this.state;
@@ -230,9 +231,10 @@ class Restorans extends Component{
                         + Add New Restoran
                     </button>
                 </div>
-                <div className="searchForm">
+                <div>
                     <form>
                         <input
+                        className={classes.searchForm}
                         placeholder="find restoran . . ."
                         value={this.state.search}
                         onChange={this.handleInputChange} />
@@ -249,6 +251,7 @@ class Restorans extends Component{
                         )}
                         </div>
                 </div>
+                <button onClick={this.loadingHandler}>changeState</button>
                 <div className={classes.Restorans}>
                     {this.state.restorans && isSearch &&
                     currentRestorans.map(restoran =>
@@ -263,8 +266,7 @@ class Restorans extends Component{
                         )}
                 </div>
                 {renderPageNumbers}
-                
-                {/* <button onClick={this.loadingHandler}>changeState</button> */}
+        
             </React.Fragment>
         )
     }
