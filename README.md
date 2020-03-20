@@ -4,6 +4,10 @@
 
 * **nur.rifandy** - *1706984695* - *APAP-C*
 
+### Keterangan
+Repository yang digunakan selama proses pembelajaran mata kuliah Arsitektur Perancangan Aplikasi Perusahaan.
+Framework utama dalam pemebelaran ini yaitu : Spring Boot dan React.js.
+
 ## Tutorial 8
 
 ### Latihan 
